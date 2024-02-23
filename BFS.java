@@ -16,7 +16,13 @@ public class BFS {
         int v = 7;
         ArrayList<Edge> graph[] = new ArrayList[v];
         construction(graph);
-        bfs(graph, v);
+        boolean vis[] = new boolean[v];
+       // bfs(graph, v);--> this is for connected graph
+        for(int i=0;i<v;i++){//-->this can work with both connected and dissconnected graph.
+            if(vis[i] == false){
+                bfs(graph,v,vis,i);
+            }
+        }
         System.out.println();
     }
 
@@ -51,10 +57,12 @@ public class BFS {
 
     }
 
-    public static void bfs(ArrayList<Edge> graph[], int v){
+    public static void bfs //(ArrayList<Edge> graph[], int v)
+    (ArrayList<Edge> graph[],int v,boolean vis[],int start){
         Queue<Integer> q = new LinkedList<>();
-        boolean vis[] = new boolean[v];
-        q.add(0);
+        //boolean vis[] = new boolean[v];-->if you only working with connected graph
+        //q.add(0);//if your are working with connected graph
+        q.add(start);
 
         while(!q.isEmpty()){
             int curr = q.remove();
