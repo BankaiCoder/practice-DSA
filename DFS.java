@@ -20,7 +20,13 @@ public class DFS {
         construction(graph);
 
         boolean[] vis = new boolean[v];
-        dfs(graph, 0, vis);
+        //dfs(graph, 0, vis);//-->this is if only using connected graph
+
+        for(int i=0;i<v;i++){
+            if(vis[i] == false){
+                dfs(graph, i, vis);
+            }
+        }
         System.out.println();
 
     }
